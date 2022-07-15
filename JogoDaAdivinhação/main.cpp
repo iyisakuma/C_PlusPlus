@@ -11,12 +11,16 @@ int main(int argc, char const *argv[])
     int nroChute;
     int tentativas = 0;
     bool nao_acertou;
+    double pontos = 1000.0;
+
     do
     {
 
         tentativas++;
-        cout << "What's your guess?";
+        cout << "What's your guess?" << endl;
         cin >> nroChute;
+        double pontos_perdidos = abs(NUMERO_SECRETO - nroChute) / 2.0;
+        pontos = pontos - pontos_perdidos;
         nao_acertou = nroChute != NUMERO_SECRETO;
         if (!nao_acertou)
         {
@@ -40,5 +44,8 @@ int main(int argc, char const *argv[])
 
     cout << "End Game in " << tentativas << " tries " << endl;
     cout << "Secrete number: " << NUMERO_SECRETO << endl;
+    cout.precision(2);
+    cout << fixed;
+    cout<< "Points: "  << pontos << endl;
     return 0;
 }
